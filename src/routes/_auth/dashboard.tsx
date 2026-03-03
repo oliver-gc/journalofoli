@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { Button } from '@/components/ui/button'
 import { Header } from "@/layout/header"
-import { getSession } from '@/lib/auth.server'
+import { getSession } from '@/lib/auth-fns'
 
 export const Route = createFileRoute('/_auth/dashboard')({
   loader: async () => {
