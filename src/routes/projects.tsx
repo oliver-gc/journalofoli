@@ -20,7 +20,7 @@ function Projects() {
                     title="journalofoli"
                     description="a personal journal and writing space, where i publish thoughts on product, tech, and whatever else is occupying my mind. built with TanStack Start, Drizzle, and Postgres."
                     status="live"
-                    href="/"
+                    href="https://github.com/oliver-gc/journalofoli"
                     linkLabel="View on GitHub"
                     accentColor="oklch(0.46 0.22 250 / 0.25)"
                 />
