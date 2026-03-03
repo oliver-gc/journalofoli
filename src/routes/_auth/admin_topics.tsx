@@ -15,9 +15,9 @@ import {
 import { Input } from "@/components/ui/input"
 import { Header } from "@/layout/header"
 import { apiClient } from "@/lib/api-client"
+import { formatDate } from "@/lib/utils"
 import type { createTopicInput, updateTopicInput } from "@/schemas/topics/topics.schemas"
 import type { Topic } from "@/types/models"
-import { formatDate } from "@/types/models"
 
 export const Route = createFileRoute("/_auth/admin_topics")({
     component: Topics,
