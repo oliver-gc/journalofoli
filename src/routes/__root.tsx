@@ -24,7 +24,6 @@ const themeScript = `(function () {
     var root = document.documentElement;
     root.classList.remove('light', 'dark');
     root.classList.add(resolved);
-    root.classList.add('theme-ready');
   } catch (e) {}
 })();`
 
