@@ -2,6 +2,8 @@
 
 Personal site and blog. Built with TanStack Start, Drizzle ORM, Better Auth, and AWS S3.
 
+Using AWS for hosting.
+
 ## Stack
 
 | Layer | Technology |
@@ -44,7 +46,7 @@ cp .env.example .env.local
 | `AWS_REGION` | S3 bucket region (e.g. `eu-west-2`) |
 | `AWS_ACCESS_KEY_ID` | IAM access key with `s3:PutObject` on the uploads prefix |
 | `AWS_SECRET_ACCESS_KEY` | IAM secret key |
-| `AWS_S3_PUBLIC_URL` | Optional — CloudFront or custom domain for served image URLs |
+| `AWS_S3_PUBLIC_URL` | Optional CloudFront or custom domain for served image URLs |
 
 ### 3. Run database migrations
 
@@ -145,7 +147,7 @@ All `GET` endpoints are public. All write endpoints require an authenticated ses
 
 ## Auth
 
-Uses Better Auth with email/password. **Sign-up is disabled** — accounts must be seeded directly in the database. Sign in at `/login`.
+Uses Better Auth with email/password. **Sign-up is disabled** accounts must be seeded directly in the database. Sign in at `/login`.
 
 ## Image uploads
 
