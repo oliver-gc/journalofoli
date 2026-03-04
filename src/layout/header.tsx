@@ -17,9 +17,9 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-20 border-b border-border backdrop-blur-md bg-[oklch(0.985_0.003_240/0.92)] dark:bg-[oklch(0.16_0.012_240/0.92)] shadow-[0_1px_0_oklch(0.46_0.22_250/0.08),0_4px_24px_oklch(0.46_0.22_250/0.06)]">
-      {/* Thin primary-coloured top accent line */}
+      {/* Thin primary-coloured top accent line 
       <div className="absolute top-0 left-0 right-0 h-0.5 bg-[linear-gradient(to_right,oklch(0.46_0.22_250),oklch(0.62_0.20_220),oklch(0.46_0.22_250))]" />
-
+        */}
       <div className="max-w-3xl mx-auto px-4 h-12 flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2.5">
