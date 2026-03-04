@@ -1,25 +1,51 @@
 import { useQuery } from "@tanstack/react-query"
 import { createFileRoute, Link } from "@tanstack/react-router"
+import { createServerFn } from "@tanstack/react-start"
 import { ArrowRight } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { fetchPosts } from "@/db/queries"
 import { Footer } from "@/layout/footer"
 import { Header } from "@/layout/header"
 import { PostCard } from "@/layout/post-card"
-import { apiClient } from "@/lib/api-client"
 import type { Post } from "@/types/models"
 
-export const Route = createFileRoute("/")({ component: App })
+const getHomePosts = createServerFn({ method: "GET" }).handler(async () => {
+    const result = await fetchPosts(1, 4)
+    return result.data.map((post) => ({
+        ...post,
+        content: post.content as object,
+        createdAt: post.createdAt.toISOString(),
+        updatedAt: post.updatedAt.toISOString(),
+        topic: post.topic
+            ? {
+                  ...post.topic,
+                  createdAt: post.topic.createdAt.toISOString(),
+                  updatedAt: post.topic.updatedAt.toISOString(),
+              }
+            : null,
+    }))
+})
+
+export const Route = createFileRoute("/")({
+    loader: async () => ({
+        posts: await getHomePosts(),
+    }),
+    component: App,
+})
 
 function App() {
+    const { posts: initialPosts } = Route.useLoaderData()
+
     const { data } = useQuery({
         queryKey: ["posts-home"],
-        queryFn: async () => {
-            const res = await apiClient.get("/posts?page=1&limit=4")
-            return res.data
-        },
+        queryFn: getHomePosts,
+        initialData: initialPosts,
+        staleTime: 60_000,
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
     })
 
-    const posts: Post[] = data?.data ?? []
+    const posts: Post[] = data ?? []
     const [latest, ...older] = posts
 
     return (
@@ -31,7 +57,14 @@ function App() {
                     <div className="absolute top-0 left-0 right-0 h-0.5 bg-[linear-gradient(to_right,oklch(0.46_0.22_250),oklch(0.62_0.20_220),oklch(0.46_0.22_250))]" />
                     <div className="relative shrink-0 mt-1">
                         <Avatar className="h-14 w-14">
-                            <AvatarImage src="https://media.licdn.com/dms/image/v2/D4E03AQFg2Q5QCTDWEQ/profile-displayphoto-crop_800_800/B4EZedKY_RHgAQ-/0/1750688436736?e=1773273600&v=beta&t=sh4GqbrDVCRLSarC-T3LBBrK-K9Z5XAYwgPfgU-nHO0" />
+                            <AvatarImage
+                                src="https://media.licdn.com/dms/image/v2/D4E03AQFg2Q5QCTDWEQ/profile-displayphoto-crop_800_800/B4EZedKY_RHgAQ-/0/1750688436736?e=1773273600&v=beta&t=sh4GqbrDVCRLSarC-T3LBBrK-K9Z5XAYwgPfgU-nHO0"
+                                width={56}
+                                height={56}
+                                loading="eager"
+                                fetchPriority="high"
+                                decoding="async"
+                            />
                             <AvatarFallback className="text-xl font-bold bg-[linear-gradient(135deg,oklch(0.46_0.22_250),oklch(0.62_0.20_220))] text-[oklch(0.98_0.01_250)]">
                                 oc
                             </AvatarFallback>

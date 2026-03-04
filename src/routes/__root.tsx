@@ -1,5 +1,4 @@
 import dmSansFont from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url'
-import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import {
   createRootRouteWithContext,
@@ -8,11 +7,14 @@ import {
   ScriptOnce,
   Scripts,
 } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
+import { lazy, Suspense } from 'react'
 import { ThemeProvider } from '@/components/theme-provider'
-import TanStackQueryDevtools from '../integrations/tanstack-query/devtools'
 import TanStackQueryProvider from '../integrations/tanstack-query/root-provider'
 import appCss from '../styles.css?url'
+
+const Devtools = import.meta.env.DEV
+  ? lazy(() => import('../integrations/devtools'))
+  : null
 
 const themeScript = `(function () {
   try {
@@ -64,6 +66,15 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         crossOrigin: 'anonymous',
       },
       {
+        rel: 'preconnect',
+        href: 'https://media.licdn.com',
+        crossOrigin: 'anonymous',
+      },
+      {
+        rel: 'dns-prefetch',
+        href: '//media.licdn.com',
+      },
+      {
         rel: 'stylesheet',
         href: appCss,
       },
@@ -109,18 +120,11 @@ function RootDocument({ children }: { children: React.ReactNode }) {
           <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
           {children}
           </ThemeProvider>
-          <TanStackDevtools
-            config={{
-              position: 'bottom-right',
-            }}
-            plugins={[
-              {
-                name: 'Tanstack Router',
-                render: <TanStackRouterDevtoolsPanel />,
-              },
-              TanStackQueryDevtools,
-            ]}
-          />
+          {Devtools ? (
+            <Suspense fallback={null}>
+              <Devtools />
+            </Suspense>
+          ) : null}
         </TanStackQueryProvider>
         <Scripts />
       </body>
