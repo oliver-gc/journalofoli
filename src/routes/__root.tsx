@@ -1,3 +1,4 @@
+import dmSansFont from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { QueryClient } from '@tanstack/react-query'
 import {
@@ -44,8 +45,24 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
       {
         title: 'journalofoli',
       },
+      {
+        name: 'description',
+        content: 'oli chester — product lead, builder, and writer. documenting the journey of building rae and everything in between.',
+      },
     ],
     links: [
+      {
+        rel: 'preload',
+        href: appCss,
+        as: 'style',
+      },
+      {
+        rel: 'preload',
+        href: dmSansFont,
+        as: 'font',
+        type: 'font/woff2',
+        crossOrigin: 'anonymous',
+      },
       {
         rel: 'stylesheet',
         href: appCss,
