@@ -2,7 +2,12 @@
 
 Personal site and blog. Built with TanStack Start, Drizzle ORM, Better Auth, and AWS S3.
 
-Using AWS for hosting.
+Using AWS for hosting, cloudlfare as the CDN.
+
+[Website Link](https://journalofoli.com)
+
+![Lighthouse metrics](lighthouse-metrics.png)
+
 
 ## Stack
 
