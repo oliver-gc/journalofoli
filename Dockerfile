@@ -3,7 +3,6 @@ FROM node:25-alpine AS builder
 
 WORKDIR /app
 
-
 COPY package.json package-lock.json ./
 RUN npm ci
 
@@ -17,8 +16,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 
-
-COPY --from=builder /app/.output ./.output
+COPY --from=builder /app/dist ./.output
 
 EXPOSE 3000
 
