@@ -20,17 +20,22 @@ const initialState: ThemeProviderState = {
 
 const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
 
-const isClient = typeof window !== "undefined"
-
 export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "vite-ui-theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (isClient ? (localStorage.getItem(storageKey) as Theme) : null) || defaultTheme
-  )
+  // Always initialise with defaultTheme so server and client agree during hydration.
+  // The inline <script> in __root.tsx already applies the correct class to <html>
+  // before React hydrates, so users never see a flash.
+  const [theme, setTheme] = useState<Theme>(defaultTheme)
+
+  // After hydration, sync from localStorage (client-only)
+  useEffect(() => {
+    const stored = localStorage.getItem(storageKey) as Theme | null
+    if (stored) setTheme(stored)
+  }, [storageKey])
 
   useEffect(() => {
     const root = window.document.documentElement
@@ -52,7 +57,7 @@ export function ThemeProvider({
   const value = {
     theme,
     setTheme: (theme: Theme) => {
-      if (isClient) localStorage.setItem(storageKey, theme)
+      localStorage.setItem(storageKey, theme)
       setTheme(theme)
     },
   }
