@@ -7,7 +7,9 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
+
 RUN npm run build
+RUN find /app/dist -name "*.mjs" | head -20
 
 # Run
 FROM node:25-alpine AS runner
