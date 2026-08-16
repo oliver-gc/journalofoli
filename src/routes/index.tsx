@@ -58,7 +58,7 @@ function App() {
                     <div className="relative shrink-0 mt-1">
                         <Avatar className="h-14 w-14">
                             <AvatarImage
-                                src="https://media.licdn.com/dms/image/v2/D4E03AQFg2Q5QCTDWEQ/profile-displayphoto-crop_800_800/B4EZedKY_RHgAQ-/0/1750688436736?e=1773273600&v=beta&t=sh4GqbrDVCRLSarC-T3LBBrK-K9Z5XAYwgPfgU-nHO0"
+                                src="/pp.jpg"
                                 width={56}
                                 height={56}
                                 loading="eager"
