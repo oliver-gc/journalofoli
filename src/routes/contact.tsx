@@ -38,7 +38,7 @@ function Contact() {
             <main className="max-w-3xl mx-auto px-4 py-12">
                 <PageHeader
                     title="contact"
-                    subtitle="i read everything."
+                    subtitle="Questions..."
                 />
 
                 <article className="group relative bg-card rounded-2xl border border-border shadow-sm hover:shadow-[0_4px_24px_oklch(0.46_0.22_250/0.08)] transition-shadow duration-300 p-8">

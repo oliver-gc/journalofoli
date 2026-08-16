@@ -71,10 +71,10 @@ function App() {
                         </Avatar>
                     </div>
                     <div className="min-w-0 flex-1">
-                        <h1 className="text-xl font-bold tracking-tight text-foreground">oli chester</h1>
-                        <p className="text-xs mt-0.5 mb-3 text-muted-foreground">28 · product lead · melbourne</p>
+                        <h1 className="text-xl font-bold tracking-tight text-foreground">Oli Chester</h1>
+                        <p className="text-xs mt-0.5 mb-3 text-muted-foreground">28 · Product Lead · Melbourne</p>
                         <p className="text-sm leading-relaxed text-foreground mb-3">
-                            28 year old british guy living in melbourne. currently building slic, the smart way to navigate tech roles. documenting the entire journey. work full time in b2b saas for anvil.
+                            28 year old british guy living in Melbourne. Currently building slic, the smart way to navigate tech roles. Documenting the entire journey. Work full time in B2B SaaS for Anvil.
                         </p>
                         <div className="flex flex-row gap-3">
                             <a href="https://github.com/oliver-gc" className="text-sm text-[oklch(0.46_0.22_250)] hover:text-[oklch(0.36_0.20_255)] dark:text-[oklch(0.62_0.20_230)] dark:hover:text-[oklch(0.72_0.18_250)] font-medium transition-colors">
