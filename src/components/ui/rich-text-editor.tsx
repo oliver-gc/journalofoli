@@ -1,4 +1,5 @@
 import Image from "@tiptap/extension-image"
+import Link from "@tiptap/extension-link"
 import Placeholder from "@tiptap/extension-placeholder"
 import { EditorContent, useEditor } from "@tiptap/react"
 import StarterKit from "@tiptap/starter-kit"
@@ -9,11 +10,13 @@ import {
     Heading3,
     ImageIcon,
     Italic,
+    Link2,
     List,
     ListOrdered,
     Loader2,
     Quote,
     Redo,
+    Unlink,
     Undo,
 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
@@ -53,6 +56,14 @@ function ToolbarButton({ active, onClick, children, title }: ToolbarButtonProps)
     )
 }
 
+function normalizeLinkHref(url: string): string {
+    if (/^(https?:|mailto:|tel:)/i.test(url)) {
+        return url
+    }
+
+    return `https://${url}`
+}
+
 export function RichTextEditor({ value, onChange, placeholder, className }: RichTextEditorProps) {
     const fileInputRef = useRef<HTMLInputElement>(null)
     const [uploading, setUploading] = useState(false)
@@ -60,6 +71,12 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Rich
     const editor = useEditor({
         extensions: [
             StarterKit,
+            Link.configure({
+                autolink: true,
+                defaultProtocol: "https",
+                openOnClick: false,
+                protocols: ["http", "https", "mailto", "tel"],
+            }),
             Placeholder.configure({ placeholder: placeholder ?? "Write something…" }),
             Image.configure({ inline: false, allowBase64: false }),
         ],
@@ -140,6 +157,40 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Rich
                 >
                     <Quote size={14} />
                 </ToolbarButton>
+                <ToolbarButton
+                    title="Insert link"
+                    active={editor?.isActive("link")}
+                    onClick={() => {
+                        if (!editor) return
+
+                        const previousUrl = editor.getAttributes("link").href as string | undefined
+                        const input = window.prompt("Enter a URL", previousUrl ?? "https://")
+
+                        if (input === null) return
+
+                        const url = input.trim()
+
+                        if (!url) {
+                            editor.chain().focus().unsetLink().run()
+                            return
+                        }
+
+                        editor
+                            .chain()
+                            .focus()
+                            .extendMarkRange("link")
+                            .setLink({ href: normalizeLinkHref(url) })
+                            .run()
+                    }}
+                >
+                    <Link2 size={14} />
+                </ToolbarButton>
+                <ToolbarButton
+                    title="Remove link"
+                    onClick={() => editor?.chain().focus().unsetLink().run()}
+                >
+                    <Unlink size={14} />
+                </ToolbarButton>
                 <div className="w-px h-4 bg-border mx-1" />
                 <ToolbarButton
                     title="Undo"
@@ -201,6 +252,14 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Rich
                 className={cn(
                     "min-h-48 max-h-100 overflow-y-auto px-4 py-3 text-sm",
                     "[&_.tiptap]:outline-none",
+                    "[&_.tiptap_p]:my-3 [&_.tiptap_p:first-child]:mt-0 [&_.tiptap_p:last-child]:mb-0",
+                    "[&_.tiptap_h2]:mt-5 [&_.tiptap_h2]:mb-3 [&_.tiptap_h2]:text-xl [&_.tiptap_h2]:font-semibold",
+                    "[&_.tiptap_h3]:mt-4 [&_.tiptap_h3]:mb-2 [&_.tiptap_h3]:text-lg [&_.tiptap_h3]:font-semibold",
+                    "[&_.tiptap_ul]:my-3 [&_.tiptap_ul]:list-disc [&_.tiptap_ul]:pl-6",
+                    "[&_.tiptap_ol]:my-3 [&_.tiptap_ol]:list-decimal [&_.tiptap_ol]:pl-6",
+                    "[&_.tiptap_li]:my-1",
+                    "[&_.tiptap_blockquote]:my-4 [&_.tiptap_blockquote]:border-l-4 [&_.tiptap_blockquote]:border-border [&_.tiptap_blockquote]:pl-4 [&_.tiptap_blockquote]:italic [&_.tiptap_blockquote]:text-muted-foreground",
+                    "[&_.tiptap_a]:font-medium [&_.tiptap_a]:text-primary [&_.tiptap_a]:underline [&_.tiptap_a]:underline-offset-4",
                     "[&_.tiptap_img]:max-w-full [&_.tiptap_img]:rounded-lg [&_.tiptap_img]:my-2",
                     "[&_.tiptap_p.is-editor-empty:first-child::before]:content-[attr(data-placeholder)]",
                     "[&_.tiptap_p.is-editor-empty:first-child::before]:text-muted-foreground",
