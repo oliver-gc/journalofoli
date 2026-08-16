@@ -72,9 +72,9 @@ function App() {
                     </div>
                     <div className="min-w-0 flex-1">
                         <h1 className="text-xl font-bold tracking-tight text-foreground">oli chester</h1>
-                        <p className="text-xs mt-0.5 mb-3 text-muted-foreground">28 · product lead · london</p>
+                        <p className="text-xs mt-0.5 mb-3 text-muted-foreground">28 · product lead · melbourne</p>
                         <p className="text-sm leading-relaxed text-foreground mb-3">
-                            currently building rae, the physical assistant. work full time in b2b saas for anvil. writing mostly about rae and tech - documenting the full journey.
+                            currently building slic, the smart way to navigate tech roles. work full time in b2b saas for anvil. writing mostly about slic.
                         </p>
                         <div className="flex flex-row gap-3">
                             <a href="https://github.com/oliver-gc" className="text-sm text-[oklch(0.46_0.22_250)] hover:text-[oklch(0.36_0.20_255)] dark:text-[oklch(0.62_0.20_230)] dark:hover:text-[oklch(0.72_0.18_250)] font-medium transition-colors">
@@ -83,9 +83,11 @@ function App() {
                             <a href="https://www.linkedin.com/in/olivergchester/" className="text-sm text-[oklch(0.46_0.22_250)] hover:text-[oklch(0.36_0.20_255)] dark:text-[oklch(0.62_0.20_230)] dark:hover:text-[oklch(0.72_0.18_250)] font-medium transition-colors">
                                 linkedin
                             </a>
+                            {/*
                             <a href="/OliverChesterCV.pdf" target="_blank" rel="noopener noreferrer" className="text-sm text-[oklch(0.46_0.22_250)] hover:text-[oklch(0.36_0.20_255)] dark:text-[oklch(0.62_0.20_230)] dark:hover:text-[oklch(0.72_0.18_250)] font-medium transition-colors">
                                 cv
                             </a>
+                            */}
                         </div>
                     </div>
                 </div>

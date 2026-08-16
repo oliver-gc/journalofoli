@@ -18,7 +18,7 @@ function Projects() {
 
                 <ProjectCard
                     title="journalofoli"
-                    description="a personal journal and writing space, where i publish thoughts on product, tech, and whatever else is occupying my mind. built with TanStack Start, Drizzle, and Postgres."
+                    description="my personal journal."
                     status="live"
                     href="https://github.com/oliver-gc/journalofoli"
                     linkLabel="View on GitHub"
@@ -26,8 +26,8 @@ function Projects() {
                 />
 
                 <ProjectCard
-                    title="rae"
-                    description="the new style of physical assistant, rae is an ai-centric gym buddy."
+                    title="slic"
+                    description="the smart way to navigate tech roles and get hired."
                     status="in progress"
                     href="#"
                     linkLabel="Incoming soon"
