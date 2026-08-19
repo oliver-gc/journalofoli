@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import { createFileRoute, Link } from "@tanstack/react-router"
 import { createServerFn } from "@tanstack/react-start"
 import { ArrowRight } from "lucide-react"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarImage } from "@/components/ui/avatar"
 import { fetchPosts } from "@/db/queries"
 import { Footer } from "@/layout/footer"
 import { Header } from "@/layout/header"
@@ -66,9 +66,6 @@ function App() {
                                 decoding="async"
                                 className="h-full w-full object-cover"
                             />
-                            <AvatarFallback className="h-full w-full flex items-center justify-center text-xl font-bold bg-[linear-gradient(135deg,oklch(0.46_0.22_250),oklch(0.62_0.20_220))] text-[oklch(0.98_0.01_250)]">
-                                oc
-                            </AvatarFallback>
                         </Avatar>
                     </div>
                     <div className="min-w-0 flex-1">
