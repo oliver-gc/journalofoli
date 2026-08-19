@@ -56,7 +56,7 @@ function App() {
                 <div className="rounded-2xl border border-[oklch(0.46_0.22_250/0.15)] bg-[linear-gradient(135deg,oklch(1_0_0),oklch(0.975_0.012_240))] dark:bg-[linear-gradient(135deg,oklch(0.19_0.022_245),oklch(0.16_0.012_240))] shadow-[0_2px_12px_oklch(0.46_0.22_250/0.08),0_1px_2px_oklch(0.46_0.22_250/0.06)] p-6 flex items-start gap-5 relative overflow-hidden">
                     <div className="absolute top-0 left-0 right-0 h-0.5 bg-[linear-gradient(to_right,oklch(0.46_0.22_250),oklch(0.62_0.20_220),oklch(0.46_0.22_250))]" />
                     <div className="relative shrink-0 mt-1">
-                        <Avatar className="h-14 w-14">
+                        <Avatar className="h-14 w-14 shrink-0">
                             <AvatarImage
                                 src="/pp.jpg"
                                 width={56}
@@ -64,8 +64,9 @@ function App() {
                                 loading="eager"
                                 fetchPriority="high"
                                 decoding="async"
+                                className="h-full w-full object-cover"
                             />
-                            <AvatarFallback className="text-xl font-bold bg-[linear-gradient(135deg,oklch(0.46_0.22_250),oklch(0.62_0.20_220))] text-[oklch(0.98_0.01_250)]">
+                            <AvatarFallback className="h-full w-full flex items-center justify-center text-xl font-bold bg-[linear-gradient(135deg,oklch(0.46_0.22_250),oklch(0.62_0.20_220))] text-[oklch(0.98_0.01_250)]">
                                 oc
                             </AvatarFallback>
                         </Avatar>
@@ -74,7 +75,7 @@ function App() {
                         <h1 className="text-xl font-bold tracking-tight text-foreground">Oli Chester</h1>
                         <p className="text-xs mt-0.5 mb-3 text-muted-foreground">28 · Product Lead · Melbourne</p>
                         <p className="text-sm leading-relaxed text-foreground mb-3">
-                            28 year old british guy living in Melbourne. Currently building slic, the smart way to navigate tech roles. Documenting the entire journey. Work full time in B2B SaaS for Anvil.
+                            28 year old british guy living in Melbourne. Currently building slic, the smart way to ask AI. Documenting the entire journey. Work full time in B2B SaaS for Anvil.
                         </p>
                         <div className="flex flex-row gap-3">
                             <a href="https://github.com/oliver-gc" className="text-sm text-[oklch(0.46_0.22_250)] hover:text-[oklch(0.36_0.20_255)] dark:text-[oklch(0.62_0.20_230)] dark:hover:text-[oklch(0.72_0.18_250)] font-medium transition-colors">

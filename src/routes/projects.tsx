@@ -12,27 +12,29 @@ function Projects() {
             <Header />
             <main className="max-w-3xl mx-auto px-4 py-12 space-y-6">
                 <PageHeader
-                    title="projects"
-                    subtitle="things i'm building and thinking about."
+                    title="Projects"
+                    subtitle="Things I'm building and thinking about."
+                />
+
+                <ProjectCard
+                    title="slic"
+                    description="The smart way to ask AI. Slic is a place where users can ask questions and get answers from a variety of AI models in a digestible forum format. Complete with voting and debating, it is designed to be a one-stop shop for all your AI needs, whether you're looking for a quick answer or a more in-depth explanation."
+                    status="In Progress"
+                    href="#"
+                    linkLabel="Incoming Soon"
+                    accentColor="oklch(0.62 0.20 150 / 0.25)"
                 />
 
                 <ProjectCard
                     title="journalofoli"
-                    description="my personal journal."
-                    status="live"
+                    description="My personal journal."
+                    status="Live"
                     href="https://github.com/oliver-gc/journalofoli"
                     linkLabel="View on GitHub"
                     accentColor="oklch(0.46 0.22 250 / 0.25)"
                 />
 
-                <ProjectCard
-                    title="slic"
-                    description="the smart way to navigate tech roles and get hired."
-                    status="in progress"
-                    href="#"
-                    linkLabel="Incoming soon"
-                    accentColor="oklch(0.62 0.20 150 / 0.25)"
-                />
+                
             </main>
             <Footer />
         </div>
